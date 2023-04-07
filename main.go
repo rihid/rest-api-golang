@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Costumer struct {
@@ -40,7 +41,7 @@ type Transaksion struct {
 var DB *gorm.DB
 
 func init() {
-	dsn := "host=localhost user=lana password=123123 dbname=lana port=5432 sslmode=disable TimeZone=Asia/jakarta"
+	dsn := "host=containers-us-west-21.railway.app user=postgres password=XSOatpHZX9R2Fnf4OppP dbname=railway port=5545 sslmode=disable TimeZone=Asia/jakarta"
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -54,6 +55,7 @@ func main() {
 	DB.AutoMigrate(&Costumer{}, &Product{}, &Transaksion{})
 
 	app := fiber.New()
+	app.Use(cors.New())
 	app.Use(func(c *fiber.Ctx) error {
 		fmt.Println("uy")
 		return c.Next()
