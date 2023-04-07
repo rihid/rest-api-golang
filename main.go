@@ -25,8 +25,8 @@ type Product struct {
 	Description string   `json:"description"`
 	Color       string   `json:"color"`
 	Price       int      `json:"price"`
-	CostumerID  int      `json:"costumer_id"`
-	Costumer    Costumer `json:"costumer"`
+//	CostumerID  int      `json:"costumer_id"`
+//	Costumer    Costumer `json:"costumer"`
 }
 
 type Transaksion struct {
